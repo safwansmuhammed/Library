@@ -1,0 +1,11 @@
+<h1>Edit Book</h1>
+ 
+<a><%= form_for @book do |f| -%>
+
+<br> Name  <br>
+<br> <%= f.text_field :book_name %> <br>
+
+<br> <%= f.submit %>
+<%end-%>
+
+<%= link_to'<button type="button">Back</button>'.html_safe , books_path %>

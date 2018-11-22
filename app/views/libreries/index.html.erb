@@ -1,0 +1,27 @@
+<table>
+  <tr>
+    <th align="left">Libraries</th>
+    <th align="left">Books Count</th>
+    <th align="left">Action</th>
+  </tr>
+
+
+<%@p.each_with_index do |lib,index| %>
+<tr>
+	<td><%= "#{index+1}) #{lib.libray_name}"%></td>
+	<% a = lib.id %>
+	<td><%= "#{Category.where(librery_id: a).sum(:book_counts)}" %></td>
+	<% if can? :update,lib %>
+	<td><%= link_to 'Edit', edit_librery_path(lib) %></td>
+	<% end %>
+<%end%>
+</tr>
+<tr>
+	<td>
+		<% if can? :create,Librery %>
+		<%= link_to '<button type="button">Add New Library</button>'.html_safe ,new_librery_path %>
+		<% end %>
+<%= link_to '<button type="button">Category</button>'.html_safe ,categories_url %>
+<%= link_to '<button type="button">Books</button>'.html_safe ,books_url %>
+</td>
+</tr>

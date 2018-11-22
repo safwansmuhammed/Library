@@ -1,0 +1,13 @@
+<% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+
+<br>
+<%= form_for @p do |f| -%>
+<br> library Name  <br>
+
+<br> <%= f.text_field :libray_name %> <br>
+ 
+<br> <%= f.submit %>
+
+<%end-%>

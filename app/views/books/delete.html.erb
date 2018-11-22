@@ -1,0 +1,13 @@
+<div class = "subject delete">
+	<h2>Delete Subject</h2>
+	<%= form_for(:book,:url =>{:action =>'destroy', :id =>'@book.id'})do |f| %>
+	<p>Are you sure you want to delete? </p>
+	<p class="reference-name"><%= @book.name%>	</p>
+		<div class="form-buttons">
+			<%= submit_tag ("delete subject") %>\
+		</div>
+		<% end %>
+
+</div>
+ 
+<%= link_to 'Back', books_path %>

@@ -1,0 +1,13 @@
+<% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+
+
+<br>
+<%= form_for @name do |f| -%>
+<br> Name  <br>
+<br> <%= f.text_field :name %> <br>
+<br> Library Name  <br>
+<br> <%= f.collection_select(:librery_id,Librery.all,:id, :libray_name) %> <br>
+<br> <%= f.submit %><%= link_to  '<button type="button">Back</button>'.html_safe , categories_path %>
+<%end-%>

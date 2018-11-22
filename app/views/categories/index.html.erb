@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <th align="left">Categories</th>
+    <th align="left">Library</th>
+    <th align="left">Action</th>
+  </tr>
+<%@c.each_with_index do |categories,index| %>
+<tr>
+	<td><%= "#{index+1}) #{categories.name} "%></td>
+	<td><%= " #{@l.find(categories.librery_id).libray_name} "%>
+		<% if can? :update,categories %>
+	<td><%= link_to 'Edit', edit_category_path(categories) %></td>
+<%end%>
+<%end%>
+
+</tr>
+<td>
+	<% if can? :create,Category %>
+	<%= link_to '<button type="button">Add New Category</button>'.html_safe ,new_category_path %>
+	<%end%>
+	  <%= link_to  '<button type="button">Back</button>'.html_safe , libreries_path %><%= link_to  '<button type="button">Books</button>'.html_safe , books_path %></td>
+</table>
+

@@ -1,0 +1,39 @@
+<a><%= form_for @book do |f| -%>
+<div class="dropdown">
+  <br class="dropbtn">Select Librery</br>
+  <div class="dropdown-content" >
+    	<%=f.collection_select(:lib_name,Librery.all,:id,:libray_name, include_blank: 'Select a library') %> 
+  </div>
+</div>
+
+<div class="dropdown">
+  <br class="dropbtn">Select Category</br>
+  <div class="dropdown-content">
+    	<%= f.grouped_collection_select(:category_id,[],:categories,:id , :id,:name, include_blank: 'Select a category') %>
+  </div>
+</div>
+<br> Name  <br>
+<br> <%= f.text_field :book_name %> <br>
+
+<br> <%= f.submit %>
+<%end-%>
+
+<script type="text/javascript">
+	$("#book_lib_name").change(function(){
+		var id = $(this).val();
+		$.ajax({
+      type: "get",
+      url: "/libreries/find_book_categories",
+      data: {id: id},
+      success: function(response){
+      	$('#book_category_id').empty().prepend("<option value=''>Select a category</option>").html()
+				$.each(response, function (i, item) {
+					$('#book_category_id').append($('<option>', { 
+						value: item.id,
+						text : item.name 
+					}));
+				});
+			}
+    })
+	});
+</script>
